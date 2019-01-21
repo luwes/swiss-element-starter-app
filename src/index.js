@@ -1,7 +1,9 @@
 import { element, useState, renderer } from "swiss-element";
-import { html, render } from "lighterhtml";
+import { html, render } from "lit-html";
 import "./FullName.js";
 import "./style.css";
+
+const litRenderer = renderer((root, html) => render(html(), root));
 
 function App() {
   const [name, setName] = useState("");
@@ -12,8 +14,8 @@ function App() {
     <h3>${name}</h3>
 
     <p>Change name:</p>
-    <full-name onchange="${ev => setName(ev.detail)}"> </full-name>
+    <full-name @change="${ev => ev.detail && setName(ev.detail)}"> </full-name>
   `;
 }
 
-customElements.define("my-app", element(renderer(render))(App));
+element("my-app", App, litRenderer);

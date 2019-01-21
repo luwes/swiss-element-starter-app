@@ -1,10 +1,13 @@
 import { element, useState, renderer } from "swiss-element";
-import { html, render } from "lighterhtml";
+import { html, render } from "lit-html";
+
+const litRenderer = renderer((root, html) => render(html(), root));
 
 function dispatch(el, first, last) {
   let event = new CustomEvent("change", {
     detail: first + " " + last
   });
+
   el.dispatchEvent(event);
 }
 
@@ -19,7 +22,7 @@ function FullName(el) {
       <label for="first">First</label>
       <input
         value="${first}"
-        onkeyup="${ev => setFirst(ev.target.value)}"
+        @keyup="${ev => setFirst(ev.target.value)}"
         type="text"
         name="first"
       />
@@ -27,7 +30,7 @@ function FullName(el) {
       <label for="last">Last</label>
       <input
         value="${last}"
-        onkeyup="${ev => setLast(ev.target.value)}"
+        @keyup="${ev => setLast(ev.target.value)}"
         type="text"
         name="last"
       />
@@ -49,4 +52,4 @@ function FullName(el) {
   `;
 }
 
-customElements.define("full-name", element(renderer(render))(FullName));
+element("full-name", FullName, litRenderer);
