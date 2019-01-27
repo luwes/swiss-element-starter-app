@@ -8,7 +8,7 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "swiss-element": "0.2.0",
+    "swiss-element": "0.5.1",
     "lit-html": "^1.0.0-rc.2",
     "lighterhtml": "0.4.1"
   },

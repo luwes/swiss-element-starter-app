@@ -1,8 +1,6 @@
 import { element, useState, renderer } from "swiss-element";
 import { html, render } from "lit-html";
 
-const litRenderer = renderer((root, html) => render(html(), root));
-
 function dispatch(el, first, last) {
   let event = new CustomEvent("change", {
     detail: first + " " + last
@@ -52,4 +50,4 @@ function FullName(el) {
   `;
 }
 
-element("full-name", FullName, litRenderer);
+element("full-name", FullName, renderer(render));

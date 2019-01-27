@@ -3,8 +3,6 @@ import { html, render } from "lit-html";
 import "./FullName.js";
 import "./style.css";
 
-const litRenderer = renderer((root, html) => render(html(), root));
-
 function App() {
   const [name, setName] = useState("");
 
@@ -18,4 +16,4 @@ function App() {
   `;
 }
 
-element("my-app", App, litRenderer);
+element("my-app", App, renderer(render));
